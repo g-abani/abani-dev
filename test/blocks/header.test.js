@@ -138,6 +138,31 @@ async function mountBrandHeader(html) {
 }
 
 describe('brand section', () => {
+  it('keeps the authored monogram button compact and separated from the name', async () => {
+    const stylesheet = document.createElement('link');
+    stylesheet.rel = 'stylesheet';
+    stylesheet.href = '/styles/portfolio.css';
+    document.head.append(stylesheet);
+    await new Promise((resolve, reject) => {
+      stylesheet.onload = resolve;
+      stylesheet.onerror = reject;
+    });
+
+    const el = await mountHeader(`<div class="section"><div class="default-content"><p>
+      <a href="/" class="btn btn-primary">AB</a><a href="/"> Abani Behera</a>
+    </p></div></div>`);
+    el.classList.add('header');
+    const { decorateHeaderContent } = await import('../../blocks/header/header.js');
+    decorateHeaderContent(el);
+
+    const monogram = el.querySelector('.brand-section a.btn');
+    const { width, height } = monogram.getBoundingClientRect();
+    expect(width).to.equal(34);
+    expect(height).to.equal(34);
+    expect(getComputedStyle(monogram).padding).to.equal('0px');
+    expect(getComputedStyle(el.querySelector('.brand-section p')).gap).to.equal('10px');
+  });
+
   it('wraps the trailing text node in a span when the brand link has one', async () => {
     const el = await mountBrandHeader(BRAND_TEXT_AND_SPAN_HTML);
     const span = el.querySelector('.brand-text');
@@ -273,6 +298,19 @@ describe('collapsed mobile nav', () => {
     await setViewport({ width: 1440, height: 900 });
   });
 
+  it('keeps the menu toggle in the visible header row', async () => {
+    await setViewport({ width: 390, height: 844 });
+    const el = await mountHeader(`<div class="header-content">${FULL_HTML}</div>`);
+    const { decorateHeaderContent } = await import('../../blocks/header/header.js');
+    decorateHeaderContent(el);
+    el.style.setProperty('--header-height', '80px');
+    el.style.height = '80px';
+    const toggle = el.querySelector('.action-wrapper.nav-toggle button');
+    const nav = el.querySelector('.main-nav-section');
+
+    expect(toggle.getBoundingClientRect().bottom).to.be.at.most(nav.getBoundingClientRect().top);
+  });
+
   it('is inert when the drawer is shut', async () => {
     await setViewport({ width: 390, height: 844 });
     const el = await mountFullHeader();
@@ -299,6 +337,34 @@ describe('collapsed mobile nav', () => {
     expect(toggle.ariaExpanded).to.equal('false');
     toggle.click();
     expect(toggle.ariaExpanded).to.equal('true');
+  });
+});
+
+describe('desktop header alignment', () => {
+  afterEach(async () => {
+    await setViewport({ width: 390, height: 844 });
+  });
+
+  it('aligns the brand and navigation links vertically', async () => {
+    await setViewport({ width: 1440, height: 900 });
+    const nav = `<div class="section"><div class="default-content"><ul>
+      <li><a href="/writing">Writing</a></li>
+      <li><a href="/projects">Projects</a></li>
+      <li><a href="/research">Research</a></li>
+      <li><a href="/speaking">Speaking</a></li>
+      <li><a href="/about">About</a></li>
+    </ul></div></div>`;
+    const el = await mountHeader(`<div class="header-content">${FULL_HTML.split(NAV_HTML).join(nav)}</div>`);
+    const { decorateHeaderContent } = await import('../../blocks/header/header.js');
+    decorateHeaderContent(el);
+    el.style.setProperty('--header-height', '80px');
+    el.style.height = '80px';
+
+    const brand = el.querySelector('.brand-section a').getBoundingClientRect();
+    const navLink = el.querySelector('.main-nav-list a').getBoundingClientRect();
+    const brandCenter = (brand.top + brand.bottom) / 2;
+    const navCenter = (navLink.top + navLink.bottom) / 2;
+    expect(Math.abs(brandCenter - navCenter)).to.be.at.most(1);
   });
 });
 

@@ -68,11 +68,7 @@ header {
 
   .header-content {
     display: grid;
-    grid-template-areas:
-      "brand"
-      "nav"
-      "actions";
-    grid-template-rows: var(--header-height) auto 1fr;
+    grid-template: "brand actions" var(--header-height) "nav nav" auto / 1fr auto;
   }
 
   .action-wrapper {
@@ -350,6 +346,12 @@ header {
     }
 
     .main-nav-section {
+      .default-content {
+        display: flex;
+        align-items: center;
+        height: 100%;
+      }
+
       .main-nav-list {
         display: flex;
         gap: var(--spacing-l);
