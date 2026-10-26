@@ -146,6 +146,26 @@ header.header .brand-section a {
   gap: 10px;
 }
 
+header.header .brand-section p {
+  gap: 10px;
+}
+
+header.header .brand-section a.btn {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 5px;
+  background: #142c3a;
+  color: #fff;
+  font: 17px Georgia, serif;
+  line-height: 1;
+  text-decoration: none;
+}
+
 header.header .main-nav-link {
   font-size: 14px;
   color: #52646b;

@@ -138,6 +138,31 @@ async function mountBrandHeader(html) {
 }
 
 describe('brand section', () => {
+  it('keeps the authored monogram button compact and separated from the name', async () => {
+    const stylesheet = document.createElement('link');
+    stylesheet.rel = 'stylesheet';
+    stylesheet.href = '/styles/portfolio.css';
+    document.head.append(stylesheet);
+    await new Promise((resolve, reject) => {
+      stylesheet.onload = resolve;
+      stylesheet.onerror = reject;
+    });
+
+    const el = await mountHeader(`<div class="section"><div class="default-content"><p>
+      <a href="/" class="btn btn-primary">AB</a><a href="/"> Abani Behera</a>
+    </p></div></div>`);
+    el.classList.add('header');
+    const { decorateHeaderContent } = await import('../../blocks/header/header.js');
+    decorateHeaderContent(el);
+
+    const monogram = el.querySelector('.brand-section a.btn');
+    const { width, height } = monogram.getBoundingClientRect();
+    expect(width).to.equal(34);
+    expect(height).to.equal(34);
+    expect(getComputedStyle(monogram).padding).to.equal('0px');
+    expect(getComputedStyle(el.querySelector('.brand-section p')).gap).to.equal('10px');
+  });
+
   it('wraps the trailing text node in a span when the brand link has one', async () => {
     const el = await mountBrandHeader(BRAND_TEXT_AND_SPAN_HTML);
     const span = el.querySelector('.brand-text');
