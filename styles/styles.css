@@ -69,7 +69,7 @@
   --spacing-xs: 4px;
 
   /* color schemes */
-  color-scheme: light dark;
+  color-scheme: light;
 
   /* color tokens */
   --color-gray-100: #f1f1f1;
@@ -159,15 +159,15 @@
   --color-dark-base: 0 0 0;
   --color-light: rgb(255 255 255);
   --color-dark: rgb(0 0 0);
-  --color-text: light-dark(var(--color-dark), var(--color-light));
-  --color-link: light-dark(var(--color-gray-900), var(--color-gray-100));
-  --color-brand: var(--color-purple-500);
-  --color-accent: light-dark(var(--color-magenta-600), var(--color-magenta-500));
-  --color-background: light-dark(var(--color-light), var(--color-dark));
-  --color-shaded: light-dark(#f9f9f9, #111);
+  --color-text: #142c3a;
+  --color-link: #11665f;
+  --color-brand: #11665f;
+  --color-accent: #11665f;
+  --color-background: #faf9f6;
+  --color-shaded: #f0f3ee;
 
   /* fonts */
-  --font-family: montserrat, "Trebuchet MS", sans-serif;
+  --font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
 
   /* headings */
   --heading-font-size-xxl: 32.44px;
@@ -183,13 +183,13 @@
   --body-font-size-xxl: 22px;
   --body-font-size-xl: 20px;
   --body-font-size-l: 18px;
-  --body-font-size-m: 16px;
+  --body-font-size-m: 17px;
   --body-font-size-s: 14px;
   --body-font-size-xs: 12px;
   --body-line-height: 1.6;
 
   /* misc */
-  --header-height: 64px;
+  --header-height: 80px;
   --breadcrumb-height: 24px;
 }
 
@@ -198,7 +198,7 @@
 }
 
 .dark-scheme {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 html {
@@ -209,7 +209,7 @@ body {
   margin: 0;
   background-color: var(--color-background);
   color: var(--color-text);
-  font-family: "Trebuchet MS", sans-serif;
+  font-family: var(--font-family);
   font-size: var(--body-font-size-m);
   line-height: var(--body-line-height);
   padding: var(--header-height) 0 0;

@@ -1,0 +1,50 @@
+.portfolio-hero-layout {
+  display: grid;
+  gap: 48px;
+  align-items: center;
+}
+
+.portfolio-hero-copy h1 {
+  margin: 24px 0;
+  max-width: 760px;
+}
+
+.portfolio-hero-copy > p:not(.eyebrow, .portfolio-hero-actions) {
+  max-width: 570px;
+  color: var(--site-muted);
+  font-size: 19px;
+}
+
+.portfolio-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.portfolio-hero-visual {
+  position: relative;
+  background: #edf1e9;
+  border: 1px solid #d4ddd1;
+  border-radius: 6px;
+  padding: 24px;
+}
+
+.portfolio-hero-visual img {
+  display: block;
+  aspect-ratio: 1;
+}
+
+.portfolio-hero-visual p {
+  margin: 0;
+  font-size: 12px;
+  color: #52646b;
+}
+
+@media (width >= 900px) {
+  .portfolio-hero-layout {
+    grid-template-columns: 1.5fr 1fr;
+    gap: 64px;
+  }
+
+}

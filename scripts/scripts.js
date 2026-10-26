@@ -9,17 +9,9 @@ if (window.trustedTypes?.createPolicy) {
   });
 }
 
-const hostnames = ['authorkit.dev'];
+const hostnames = ['main--abani-dev--g-abani.aem.page', 'main--abani-dev--g-abani.aem.live'];
 
-const locales = {
-  '': { lang: 'en' },
-  '/de': { lang: 'de' },
-  '/es': { lang: 'es' },
-  '/fr': { lang: 'fr' },
-  '/hi': { lang: 'hi' },
-  '/ja': { lang: 'ja' },
-  '/zh': { lang: 'zh' },
-};
+const locales = { '': { lang: 'en' } };
 
 const linkBlocks = [
   { fragment: '/fragments/' },

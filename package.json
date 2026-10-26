@@ -1,28 +1,29 @@
 {
-  "name": "author-kit",
+  "name": "abani-dev",
   "version": "2.1.0",
   "type": "module",
-  "description": "Powerfully simple experiences.",
+  "description": "Abani Behera \u2014 enterprise architecture, Agentic AI, research, and speaking.",
   "scripts": {
     "lint:js": "eslint .",
-    "lint:css": "stylelint blocks/**/*.css styles/*.css",
+    "lint:css": "stylelint blocks/**/*.css styles/*.css templates/**/*.css",
     "lint": "npm run lint:js && npm run lint:css",
     "test": "wtr \"./test/**/*.test.(js|html)\" --node-resolve --port=2000 --coverage --concurrent-browsers 4",
     "test:watch": "npm test -- --watch",
     "test:file": "wtr --node-resolve --port=2000 --coverage",
     "test:file:watch": "wtr --config ./web-test-runner.config.mjs --node-resolve --port=2000 --coverage --watch",
-    "build:lit": "esbuild --format=esm --minify ./deps/lit/src/index.js --bundle --outfile=./deps/lit/dist/index.js"
+    "build:lit": "esbuild --format=esm --minify ./deps/lit/src/index.js --bundle --outfile=./deps/lit/dist/index.js",
+    "preview:content": "python3 tools/preview-content.py"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aemsites/author-kit.git"
+    "url": "git+https://github.com/g-abani/abani-dev.git"
   },
-  "author": "Adobe",
+  "author": "Abani Behera",
   "license": "Apache License 2.0",
   "bugs": {
-    "url": "https://github.com/aemsites/author-kit/issues"
+    "url": "https://github.com/g-abani/abani-dev/issues"
   },
-  "homepage": "https://github.com/aemsites/author-kit#readme",
+  "homepage": "https://github.com/g-abani/abani-dev",
   "devDependencies": {
     "@adobe/eslint-config-helix": "^3.0.17",
     "@esm-bundle/chai": "4.3.4-fix.0",
