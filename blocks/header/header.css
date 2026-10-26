@@ -68,11 +68,7 @@ header {
 
   .header-content {
     display: grid;
-    grid-template-areas:
-      "brand"
-      "nav"
-      "actions";
-    grid-template-rows: var(--header-height) auto 1fr;
+    grid-template: "brand actions" var(--header-height) "nav nav" auto / 1fr auto;
   }
 
   .action-wrapper {
@@ -357,6 +353,7 @@ header {
 
       .main-nav-link {
         width: auto;
+        line-height: var(--header-height);
       }
 
       .menu {

@@ -273,6 +273,19 @@ describe('collapsed mobile nav', () => {
     await setViewport({ width: 1440, height: 900 });
   });
 
+  it('keeps the menu toggle in the visible header row', async () => {
+    await setViewport({ width: 390, height: 844 });
+    const el = await mountHeader(`<div class="header-content">${FULL_HTML}</div>`);
+    const { decorateHeaderContent } = await import('../../blocks/header/header.js');
+    decorateHeaderContent(el);
+    el.style.setProperty('--header-height', '80px');
+    el.style.height = '80px';
+    const toggle = el.querySelector('.action-wrapper.nav-toggle button');
+    const nav = el.querySelector('.main-nav-section');
+
+    expect(toggle.getBoundingClientRect().bottom).to.be.at.most(nav.getBoundingClientRect().top);
+  });
+
   it('is inert when the drawer is shut', async () => {
     await setViewport({ width: 390, height: 844 });
     const el = await mountFullHeader();
@@ -299,6 +312,27 @@ describe('collapsed mobile nav', () => {
     expect(toggle.ariaExpanded).to.equal('false');
     toggle.click();
     expect(toggle.ariaExpanded).to.equal('true');
+  });
+});
+
+describe('desktop header alignment', () => {
+  afterEach(async () => {
+    await setViewport({ width: 390, height: 844 });
+  });
+
+  it('aligns the brand and navigation links vertically', async () => {
+    await setViewport({ width: 1440, height: 900 });
+    const el = await mountHeader(`<div class="header-content">${FULL_HTML}</div>`);
+    const { decorateHeaderContent } = await import('../../blocks/header/header.js');
+    decorateHeaderContent(el);
+    el.style.setProperty('--header-height', '80px');
+    el.style.height = '80px';
+
+    const brand = el.querySelector('.brand-section a').getBoundingClientRect();
+    const navLink = el.querySelector('.main-nav-link').getBoundingClientRect();
+    const brandCenter = (brand.top + brand.bottom) / 2;
+    const navCenter = (navLink.top + navLink.bottom) / 2;
+    expect(Math.abs(brandCenter - navCenter)).to.be.at.most(1);
   });
 });
 
