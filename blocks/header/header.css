@@ -346,6 +346,12 @@ header {
     }
 
     .main-nav-section {
+      .default-content {
+        display: flex;
+        align-items: center;
+        height: 100%;
+      }
+
       .main-nav-list {
         display: flex;
         gap: var(--spacing-l);
@@ -353,7 +359,6 @@ header {
 
       .main-nav-link {
         width: auto;
-        line-height: var(--header-height);
       }
 
       .menu {
