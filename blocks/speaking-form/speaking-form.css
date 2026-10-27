@@ -1,6 +1,10 @@
 .speaking-form {
-  margin-block: 36px;
+  margin-block: 24px 0;
   text-align: center;
+}
+
+.section.page-intro:has(.speaking-form) {
+  padding-bottom: 32px;
 }
 
 .speaking-form-opener {
