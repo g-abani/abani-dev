@@ -7,6 +7,10 @@
   padding-bottom: 32px;
 }
 
+.section.page-intro:has(.speaking-form) + .section {
+  padding-top: 24px;
+}
+
 .speaking-form-opener {
   background: var(--color-brand);
   border: 0;
