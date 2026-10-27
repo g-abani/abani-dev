@@ -24,9 +24,6 @@ const components = ['fragment', 'schedule'];
 
 // How to decorate an area before loading it
 const decorateArea = ({ area = document }) => {
-  // Page metadata is already in <head>; don't load it as a content block.
-  area.querySelectorAll('main .metadata').forEach((metadata) => metadata.remove());
-
   const eagerLoad = (parent, selector) => {
     const img = parent.querySelector(selector);
     if (!img) return;
