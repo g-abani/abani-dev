@@ -41,6 +41,25 @@ describe('label hiding', () => {
   });
 });
 
+describe('desktop alignment', () => {
+  it('centers navigation links with the brand at the configured header height', async () => {
+    await setViewport({ width: 1440, height: 900 });
+    const el = await mountHeader(`<div class="header-content">
+      <div class="brand-section"><div class="default-content"><p><a href="/">Brand</a></p></div></div>
+      <div class="main-nav-section"><div class="default-content"><nav><ul class="main-nav-list">
+        <li class="main-nav-item"><a class="main-nav-link" href="/writing">Writing</a></li>
+      </ul></nav></div></div>
+    </div>`);
+    for (const height of [64, 80]) {
+      el.style.setProperty('--header-height', `${height}px`);
+      const brand = el.querySelector('.brand-section a').getBoundingClientRect();
+      const link = el.querySelector('.main-nav-link').getBoundingClientRect();
+      expect(link.height).to.equal(height);
+      expect(link.top + link.height / 2).to.equal(brand.top + brand.height / 2);
+    }
+  });
+});
+
 const NAV_HTML = `<div class="section">
   <div class="default-content">
     <ul>
