@@ -18,7 +18,7 @@ Use `aem up` to test actual DA preview content with local code. Preview pages in
 
 ## Authoring
 
-- Pages: `/`, `/writing`, `/projects`, `/research`, `/speaking`, `/about`.
+- Pages: `/`, `/writing`, `/projects`, `/research`, `/speaking`, `/about`, `/privacy`.
 - Writing detail pages use `template: article` metadata.
 - `Portfolio Hero` has a copy cell and a visual cell in one row.
 - `Editorial List` has one content cell per row; use `Editorial List (cards)` for two-column cards.
@@ -29,5 +29,9 @@ Use `aem up` to test actual DA preview content with local code. Preview pages in
 ## Validation
 
 Run `npm run lint` and `npm test` using a supported Node LTS and Chrome. Browser checks should cover a narrow viewport, keyboard navigation, one H1 per page, all internal links, article readability, and missing fragments.
+
+## Google Analytics
+
+GA4 integration is ready but disabled until a Measurement ID and production hostname are configured. Follow [the setup guide](docs/analytics.md) to create the property, enable consent-gated tracking, and verify collection.
 
 Launch writing and the Project Stream case study summarize public IEEE research. Review content before publishing; no headshot, private implementation material, or unprovided presentation recordings are included.

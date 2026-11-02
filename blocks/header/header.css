@@ -359,6 +359,7 @@ header {
 
       .main-nav-link {
         width: auto;
+        line-height: var(--header-height);
       }
 
       .menu {

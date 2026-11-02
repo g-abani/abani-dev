@@ -13,6 +13,14 @@ async function loadSidekick() {
   import('./utils/lazyhash.js');
   import('./utils/footer.js').then(({ default: footer }) => footer());
 
+  const analytics = { measurementId: 'G-VRSEVFLQQB', hostnames: ['abani.dev'] };
+  const params = new URLSearchParams(window.location.search);
+  if (analytics.measurementId && analytics.hostnames.includes(window.location.hostname)
+    && params.get('martech') !== 'off' && !params.has('dapreview') && !params.has('quick-edit')
+    && window.self === window.top) {
+    import('./utils/analytics.js').then(({ default: init }) => init(analytics.measurementId));
+  }
+
   // Author facing tools
   if (ENV !== 'prod') {
     import('../tools/scheduler/scheduler.js');
